@@ -45,8 +45,7 @@ for i in dict_.values():
     threshold = 0.8
     loc = np.where(res>=threshold)
     for pt in zip(*loc[ : :-1]):
-         cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 2)
+        cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 2)
 
-cv2.rectangle(img, (260, 501), (273, 370), (0, 0, 255), 2)
 cv2.imshow('res.png', img)
 cv2.waitKey(0)
