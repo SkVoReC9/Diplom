@@ -40,8 +40,7 @@ for i in dict_.values():
     res = cv2.matchTemplate(imgGray, template, cv2.TM_CCOEFF_NORMED)
     conf = cv2.minMaxLoc(res)
     print(conf)
-    #need write cord and id for each image, if one template match to 2 objects
-    #then need add one id for 2 objects
+    #TODO need write cord and id for each image, if one template match to 2 objects then need add one id for 2 objects
     threshold = 0.8
     loc = np.where(res>=threshold)
     for pt in zip(*loc[ : :-1]):
