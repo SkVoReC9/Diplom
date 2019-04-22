@@ -31,7 +31,7 @@ imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 #w, h = template.shape[::-1]
 
 #Dict of templates
-dict_ = {1: 'IMG\Test1.png', 2: 'IMG\Test2.png', 3: 'IMG\Test3.png'}
+dict_ = {1: 'IMG\Test6.png', 2: 'IMG\Test7.png', 3: 'IMG\Test8.png'}
    #cycle for reading each template from dict
 for i in dict_.values():
     template = cv2.imread(i, 0)
@@ -45,7 +45,7 @@ for i in dict_.values():
     loc = np.where(res>=threshold)
     for pt in zip(*loc[ : :-1]):
         cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 2)
-        print(pt[1] + h, pt[0] + w, pt)
+
 
 cv2.imshow('res.png', img)
 cv2.waitKey(0)
