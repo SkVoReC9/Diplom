@@ -21,10 +21,10 @@ for c in cnts:
         cv2.drawContours(img, [approx], -1, (0, 255, 0), 4)
     # если 3 контура, значит это треугольник
     if len(approx) == 3:
-        cv2.drawContours(img, [approx], -1, (255, 0, 0), 4)
+        cv2.drawContours(img, [approx], -1, (0, 255, 0), 4)
     # если больше 5 значит это круг
     if len(approx) > 5:
-        cv2.drawContours(img, [approx], -1, (0, 0, 255), 5)
+        cv2.drawContours(img, [approx], -1, (0, 255, 0), 5)
 imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 new_img = FindFunc.FindElement(imgGray, img)
 cv2.imshow('res.png', new_img)
