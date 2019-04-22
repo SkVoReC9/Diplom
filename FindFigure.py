@@ -1,6 +1,7 @@
 import cv2
 import imutils
 import numpy as np
+import FindFunc
 
 #Read source img
 img = cv2.imread('IMG\Test.png')
@@ -11,7 +12,6 @@ kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7))
 closed = cv2.morphologyEx(edge, cv2.MORPH_CLOSE, kernel)
 cnts = cv2.findContours(closed.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 cnts = imutils.grab_contours(cnts)
-
 for c in cnts:
     # approx contour
     peri = cv2.arcLength(c, True)
@@ -25,27 +25,9 @@ for c in cnts:
     # если больше 5 значит это круг
     if len(approx) > 5:
         cv2.drawContours(img, [approx], -1, (0, 0, 255), 5)
-
 imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-#template = cv2.imread('Test1.png', 0)
-#w, h = template.shape[::-1]
-
-#Dict of templates
-dict_ = {1: 'IMG\Test6.png', 2: 'IMG\Test7.png', 3: 'IMG\Test8.png'}
-   #cycle for reading each template from dict
-for i in dict_.values():
-    template = cv2.imread(i, 0)
-    w, h = template.shape[::-1]
-    #getting match from picture
-    res = cv2.matchTemplate(imgGray, template, cv2.TM_CCOEFF_NORMED)
-    conf = cv2.minMaxLoc(res)
-    print(conf)
-    #TODO need write cord and id for each image, if one template match to 2 objects then need add one id for 2 objects
-    threshold = 0.8
-    loc = np.where(res>=threshold)
-    for pt in zip(*loc[ : :-1]):
-        cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 2)
-
-
-cv2.imshow('res.png', img)
+new_img = FindFunc.FindElement(imgGray, img)
+cv2.imshow('res.png', new_img)
 cv2.waitKey(0)
+
+
