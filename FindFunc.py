@@ -14,7 +14,7 @@ def FindElement(imgGray, img):
         conf = cv2.minMaxLoc(res)
         print(conf)
         # TODO need write cord and id for each image, if one template match to 2 objects then need add one id for 2 objects
-        threshold = 0.74
+        threshold = 0.8
         loc = np.where(res >= threshold)
         for pt in zip(*loc[::-1]):
             cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 2)
