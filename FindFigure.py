@@ -3,7 +3,7 @@ import imutils
 import numpy as np
 
 #Read source img
-img = cv2.imread('Test.png')
+img = cv2.imread('IMG\Test.png')
 gr = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 gr = cv2.GaussianBlur(gr, (3, 3), 0)
 edge = cv2.Canny(gr, 10, 250)
@@ -31,7 +31,7 @@ imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 #w, h = template.shape[::-1]
 
 #Dict of templates
-dict_ = {1: 'Test1.png', 2: 'Test2.png', 3: 'Test3.png'}
+dict_ = {1: 'IMG\Test1.png', 2: 'IMG\Test2.png', 3: 'IMG\Test3.png'}
    #cycle for reading each template from dict
 for i in dict_.values():
     template = cv2.imread(i, 0)
