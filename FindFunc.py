@@ -4,7 +4,7 @@ import imutils
 
 def FindElement(imgGray, img):
     # Dict of templates
-    dict_ = {1: 'IMG\Test1.png', 2: 'IMG\Test2.png', 3: 'IMG\Test3.png'}
+    dict_ = {1: 'IMG\Test1.png', 2: 'IMG\Test33.png', 3: 'IMG\Test3.png'}
     # cycle for reading each template from dict
     for i in dict_.values():
         template = cv2.imread(i, 0)
@@ -18,4 +18,5 @@ def FindElement(imgGray, img):
         loc = np.where(res >= threshold)
         for pt in zip(*loc[::-1]):
             cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 2)
+            cv2.putText(img,pt.__str__()+' '+ (pt[0]+w).__str__()+' '+(pt[1]+h).__str__(), pt, cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 0), lineType=cv2.LINE_AA)
     return img
