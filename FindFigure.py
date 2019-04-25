@@ -16,7 +16,6 @@ for c in cnts:
     # approx contour
     peri = cv2.arcLength(c, True)
     approx = cv2.approxPolyDP(c, 0.02 * peri, True)
-
     if len(approx) == 4:
         cv2.drawContours(img, [approx], -1, (0, 255, 0), 4)
     # если 3 контура, значит это треугольник

@@ -18,5 +18,7 @@ def FindElement(imgGray, img):
         loc = np.where(res >= threshold)
         for pt in zip(*loc[::-1]):
             cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 2)
-            cv2.putText(img,pt.__str__()+' '+ (pt[0]+w).__str__()+' '+(pt[1]+h).__str__(), pt, cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 0), lineType=cv2.LINE_AA)
+        cv2.putText(img,pt.__str__()+' '+ (pt[0]+w).__str__()+' '+(pt[1]+h).__str__(), pt, cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 0), lineType=cv2.LINE_AA)
+        #cv2.imshow('Iter{0}'.format(i), img)
+        print(pt.__str__() + ' ' + (pt[0] + w).__str__() + ' ' + (pt[1] + h).__str__())
     return img
