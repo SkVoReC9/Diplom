@@ -4,7 +4,7 @@ import numpy as np
 import FindFunc
 
 #Read source img
-img = cv2.imread('IMG\TestNew.png')
+img = cv2.imread('IMG\Test.png')
 gr = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 gr = cv2.GaussianBlur(gr, (3, 3), 0)
 edge = cv2.Canny(gr, 10, 250)

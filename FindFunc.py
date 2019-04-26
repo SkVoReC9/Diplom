@@ -2,9 +2,12 @@ import cv2
 import numpy as np
 import imutils
 
+
 def FindElement(imgGray, img):
     # Dict of templates
-    dict_ = {1: 'IMG\Test1.png', 2: 'IMG\Test33.png', 3: 'IMG\Test3.png'}
+    Iif = None
+    Iif1 = None
+    dict_ = {1: 'IMG\Test1.png', 2: 'IMG\Test33.png', 3: 'IMG\Test3.png', 4: 'IMG\Test331.png'}
     # cycle for reading each template from dict
     for i in dict_.values():
         template = cv2.imread(i, 0)
@@ -17,8 +20,12 @@ def FindElement(imgGray, img):
         threshold = 0.8
         loc = np.where(res >= threshold)
         for pt in zip(*loc[::-1]):
+            Iif1 = [pt.__str__(), (pt[0] + w).__str__(), (pt[1] + h).__str__()]
             cv2.rectangle(img, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 2)
-        cv2.putText(img,pt.__str__()+' '+ (pt[0]+w).__str__()+' '+(pt[1]+h).__str__(), pt, cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 0), lineType=cv2.LINE_AA)
-        #cv2.imshow('Iter{0}'.format(i), img)
+        if(Iif!=Iif1):
+            cv2.putText(img, pt.__str__()+' ' + (pt[0]+w).__str__()+' '+(pt[1]+h).__str__(), pt, cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 0), lineType=cv2.LINE_AA)
+        cv2.imshow('Iter{0}'.format(i), img)
         print(pt.__str__() + ' ' + (pt[0] + w).__str__() + ' ' + (pt[1] + h).__str__())
+        Iif = [pt.__str__ (), (pt[0] + w).__str__(),  (pt[1] + h).__str__()]
     return img
+
