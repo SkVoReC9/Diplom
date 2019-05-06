@@ -4,7 +4,7 @@ import numpy as np
 import FindFunc
 
 #Read source img
-img = cv2.imread('IMG\Test.png')
+img = cv2.imread('IMG\TestNew.png')
 gr = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 gr = cv2.GaussianBlur(gr, (3, 3), 0)
 edge = cv2.Canny(gr, 10, 250)
@@ -26,7 +26,7 @@ for c in cnts:
      #   cv2.drawContours(img, [approx], -1, (0, 255, 0), 5)
 imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 new_img = FindFunc.FindElement(imgGray, img)
-cv2.imshow('res.png', new_img)
+cv2.imshow('res.png',img)
 cv2.waitKey(0)
 
 
