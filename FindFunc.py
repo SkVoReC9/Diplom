@@ -37,8 +37,6 @@ def FindElement(imgGray, img):
         print(Arr)
 
     return img
-#
-##
     # Iif = None
     # Iif1 = None
     # dict_ = {1: 'IMG\Test1.png', 2: 'IMG\Test33.png', 3: 'IMG\Test3.png', 4: 'IMG\Test331.png'}
