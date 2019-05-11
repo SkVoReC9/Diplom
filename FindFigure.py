@@ -1,10 +1,8 @@
-import cv2
-import imutils
 import numpy as np
-import FindFunc
+import FindFunc, HTMLModels, imutils, cv2
 
 #Read source img
-img = cv2.imread('IMG\Test.png')
+img = cv2.imread('IMG\TestImageBlock.png')
 gr = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 gr = cv2.GaussianBlur(gr, (3, 3), 0)
 edge = cv2.Canny(gr, 10, 250)
@@ -22,10 +20,11 @@ for c in cnts:
     if len(approx) == 3:
         cv2.drawContours(img, [approx], -1, (0, 255, 0), 4)
     # если больше 5 значит это круг
-   # if len(approx) > 5:
-     #   cv2.drawContours(img, [approx], -1, (0, 255, 0), 5)
+    if len(approx) > 5:
+        cv2.drawContours(img, [approx], -1, (0, 255, 0), 5)
 imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-new_img = FindFunc.FindElement(imgGray, img)
+List_of_blocks = FindFunc.FindElement(imgGray, img)
+HTMLModels.StartConstruct(List_of_blocks)
 cv2.imshow('res.png',img)
 cv2.waitKey(0)
 
