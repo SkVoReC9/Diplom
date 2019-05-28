@@ -1,17 +1,20 @@
-from PyQt5.QtWidgets import QWidget, QApplication, QPushButton, QToolTip
+from PyQt5 import QtWidgets, uic
 import sys
+import DesignerWindow
 
-class MainWindow(QWidget):
+class myWin(QtWidgets.QMainWindow):
     def __init__(self):
-        super().__init__()
-        self.initUI()
-    def initUI(self):
-        Button_for_start = QPushButton('Start', self)
-        Button_for_start.move(100, 100)
-        self.resize(1600, 900)
-        self.setWindowTitle('SCS')
-        self.show()
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    win = MainWindow()
-    sys.exit(app.exec_())
+        super(myWin, self).__init__()
+        self.ui = DesignerWindow.Ui_MainWindow()
+        self.ui.setupUi(self)
+
+        self.ui.StartConstruct_Button.clicked(self.StartClicked)
+
+    def StartClicked(self):
+        return
+
+
+app = QtWidgets.QApplication([])
+application = myWin()
+application.show()
+sys.exit(app.exec_())

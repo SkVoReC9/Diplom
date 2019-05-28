@@ -1,13 +1,24 @@
 import cv2
+import pathlib
 import numpy as np
+from PIL import Image
+import os
 import imutils
 
 def FindElement(imgGray, img):
     # Dict of templates TODO Save coord for elements
-    dict_ = {1: 'IMG\Scroll.png', 2: 'IMG\MainView.png', 3: 'IMG\LowerMenu.png', 4: 'IMG\Banner.png', 5:'IMG\ImageBlock.png'}
+    ###
+    images = []
+    folder = os.path.dirname(os.path.realpath(__file__)) + '\Templates'
+    for filename in os.listdir(folder):
+     img_dir = os.path.join(folder, filename)
+     if img_dir is not None:
+        images.append(img_dir)
+    ###
+
     Arr_of_blocks = []
     #cycle for reading each template from dict
-    for i in dict_.values():
+    for i in images:
         template = cv2.imread(i, 1)
         template = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY)
         template = cv2.Canny(template, 50, 200)
@@ -31,10 +42,10 @@ def FindElement(imgGray, img):
             (_, maxLoc, r) = found
             (SX, SY) = (int(maxLoc[0] * r), int(maxLoc[1] * r))
             (EX, EY) = (int((maxLoc[0]+w)*r), int((maxLoc[1]+h)*r))
-            cv2.rectangle(img, (SX, SY), (EX, EY), (255, 0, 255), 1)
+        cv2.rectangle(img, (SX, SY), (EX, EY), (255, 0, 255), 1)
         cv2.putText(img, SX.__str__() + ' ' + SY.__str__() + ' ' + EX.__str__() + ' ' + EY.__str__(), (SX, SY), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 0, 0), lineType=cv2.LINE_AA)
         Arr = [SX, SY, EX, EY, i]
-        print(Arr)
         Arr_of_blocks.append(Arr)
+
     print(Arr_of_blocks)
     return Arr_of_blocks
