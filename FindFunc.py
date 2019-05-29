@@ -1,9 +1,9 @@
-import cv2
-import pathlib
-import numpy as np
-from PIL import Image
 import os
+
+import cv2
 import imutils
+import numpy as np
+
 
 def FindElement(imgGray, img):
     # Dict of templates TODO Save coord for elements

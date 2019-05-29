@@ -2,22 +2,90 @@ import os
 
 
 def StartConstruct(List_of_blocks):
+    SXscr = SYscr = Exscr = EYscr = SXban = SYban = EXban = EYban = SXlow = SYlow = Exlow = EYlow = SXim = SYim = EXim = EYim = SX1ma = SY1ma = EX1ma = EY1ma = 0
+    File_Scroll = File_Low_Menu = File_Main_View = File_Image_block = File_Banner = ''
+    Path = 'HTMLBlocks\Construct.html'
+    Flag = True
     for blocks in List_of_blocks:
         head, name = os.path.split(blocks[4])
         if name == 'Scroll.png':
-            As = blocks[0]
-            Bs = blocks[1]
-            print(As, Bs)
+            SXscr = blocks[0]
+            SYscr = blocks[1]
+            Exscr = blocks[2]
+            EYscr = blocks[3]
+            File_Scroll1 = open('HTMLBlocks\Scroll.html','r')
+            File_Scroll = File_Scroll1.read()
+            File_Scroll1.close()
         elif name == 'Banner.png':
-            AB = blocks[1]
-            BB = blocks[2]
+            SXban = blocks[0]
+            SYban = blocks[1]
+            EXban = blocks[2]
+            EYban = blocks[3]
+            File_Banner1 = open('HTMLBlocks\Banner.html', 'r')
+            File_Banner = File_Banner1.read()
+            File_Banner1.close()
         elif name == 'LowerMenu.png':
-            AL = blocks[1]
-            BL = blocks[2]
+            SXlow = blocks[0]
+            SYlow = blocks[1]
+            Exlow = blocks[2]
+            EYlow = blocks[3]
+            File_Low_Menu1 = open('HTMLBlocks\LowerMenu.html', 'r')
+            File_Low_Menu = File_Low_Menu1.read()
+            File_Low_Menu1.close()
         elif name == 'ImageBlock.png':
-            AI = blocks[1]
-            BI = blocks[2]
+            SXim = blocks[0]
+            SYim = blocks[1]
+            EXim = blocks[2]
+            EYim = blocks[3]
+            File_Image_block1 = open('HTMLBlocks\ImageBlock.html', 'r')
+            File_Image_block = File_Image_block1.read()
+            File_Image_block1.close()
         elif name == '1CMainView.png':
-            A1 = blocks[1]
-            B1 = blocks[2]
-    return
+            SX1ma = blocks[0]
+            SY1ma = blocks[1]
+            EX1ma = blocks[2]
+            EY1ma = blocks[3]
+            File_Main_View1 = open('HTMLBlocks\MainView.html', 'r')
+            File_Main_View = File_Main_View1.read()
+            File_Main_View1.close()
+    if(SX1ma > SXim and SY1ma > SYim and EX1ma < EXim and EY1ma < EYim):
+        for blocks in List_of_blocks:
+            head, name = os.path.split(blocks[4])
+            if name == 'ImageBlock.png':
+                List_of_blocks.remove(blocks)
+    elif(SXim>SX1ma and SYim > SY1ma and EXim <EX1ma and EYim < EX1ma):
+        for blocks in List_of_blocks:
+            head, name = os.path.split(blocks[4])
+            if name == '1CMainView.png':
+                List_of_blocks.remove(blocks)
+                Flag = False
+    File_Main = open(Path, 'a+')
+    if Flag:
+        File_Main.write(File_Main_View)
+        File_Main.write('\n')
+        File_Main.write(File_Low_Menu)
+        File_Main.write('\n')
+        File_Main.write(File_Banner)
+        File_Main.write('\n')
+        File_Main.write(File_Scroll)
+        File_Main.write('\n')
+        File_Main.write('</body>')
+        File_Main.write('\n')
+        File_Main.write('</html>')
+        File_Main.close()
+    else:
+        File_Main.write(File_Image_block)
+        File_Main.write('\n')
+        File_Main.write(File_Low_Menu)
+        File_Main.write('\n')
+        File_Main.write(File_Banner)
+        File_Main.write('\n')
+        File_Main.write(File_Scroll)
+        File_Main.write('\n')
+        File_Main.write('</body>')
+        File_Main.write('\n')
+        File_Main.write('</html>')
+        File_Main.close()
+    return Path
+
+
