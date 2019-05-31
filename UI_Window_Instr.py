@@ -3,11 +3,11 @@ import sys
 from PyQt5 import QtWidgets, QtGui
 
 import InstructionWindow
-
 import UI_Window_Start
 
+
 class Instr_Window(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, CSS_NAME, JS_NAME,HTMLON):
         super(Instr_Window, self).__init__()
         self.ui = InstructionWindow.Ui_MainWindow()
         self.ui.setupUi(self)
@@ -87,8 +87,6 @@ class Instr_Window(QtWidgets.QMainWindow):
     def BeginLoad(self):
         self.open = UI_Window_Start.Start_Window()
         self.open.show()
-
-
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

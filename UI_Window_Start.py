@@ -1,12 +1,12 @@
-import sys, webbrowser
-
 import os
+import sys
+import webbrowser
 
-from PyQt5 import QtWidgets, QtGui, QtCore
-
-import StartWindow
+from PyQt5 import QtWidgets
 
 import FindFigure
+import StartWindow
+
 
 class Start_Window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -17,6 +17,8 @@ class Start_Window(QtWidgets.QMainWindow):
         self.ui.OpenFileButton.clicked.connect(self.OpenFile)
         self.ui.StartDetect.clicked.connect(self.Start_Detecting)
         self.ui.OpenHTML.clicked.connect(self.Openhtml)
+
+        self.ui.lineEdit.setReadOnly(True)
 
         global Maket_Name
         global Complete
