@@ -12,6 +12,9 @@ class Instr_Window(QtWidgets.QMainWindow):
         self.ui = InstructionWindow.Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.setWindowTitle('Инструкция')
+        self.setWindowIcon(QtGui.QIcon('Icon.ico'))
+
         ###BANNER###
         Pic_ban = QtWidgets.QLabel(self)
         pixmap_ban = QtGui.QPixmap('IMG1\\baner.png')

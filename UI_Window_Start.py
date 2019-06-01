@@ -2,7 +2,7 @@ import os
 import sys
 import webbrowser
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui
 
 import FindFigure
 import StartWindow
@@ -13,6 +13,9 @@ class Start_Window(QtWidgets.QMainWindow):
         super(Start_Window, self).__init__()
         self.ui = StartWindow.Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.setWindowTitle('Обработка')
+        self.setWindowIcon(QtGui.QIcon('Icon.ico'))
 
         self.ui.OpenFileButton.clicked.connect(self.OpenFile)
         self.ui.StartDetect.clicked.connect(self.Start_Detecting)

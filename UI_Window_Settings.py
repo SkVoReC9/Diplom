@@ -10,6 +10,8 @@ class Setting_Window(QtWidgets.QMainWindow):
         super(Setting_Window, self).__init__()
         self.ui = SettingWindow.Ui_MainWindow()
         self.ui.setupUi(self)
+        self.setWindowTitle('Настройки')
+        self.setWindowIcon(QtGui.QIcon('Icon.ico'))
 
         self.parent1 = parent
         self.CSS_NAME = self.JS_NAME = None

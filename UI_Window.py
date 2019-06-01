@@ -1,6 +1,6 @@
 import sys
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtGui
 
 import DesignerWindow
 import UI_Window_Instr
@@ -12,6 +12,8 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = DesignerWindow.Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.setWindowIcon(QtGui.QIcon('Icon.ico'))
 
         self.CSS_ATT = None
         self.JS_ATT = None
