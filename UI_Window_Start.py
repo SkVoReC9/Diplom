@@ -9,7 +9,7 @@ import StartWindow
 
 
 class Start_Window(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, SettCSS, SettJS, SettHTML):
         super(Start_Window, self).__init__()
         self.ui = StartWindow.Ui_MainWindow()
         self.ui.setupUi(self)
@@ -17,15 +17,24 @@ class Start_Window(QtWidgets.QMainWindow):
         self.setWindowTitle('Обработка')
         self.setWindowIcon(QtGui.QIcon('Icon.ico'))
 
+        #Переменные настроек
+        self.CSS = SettCSS
+        self.JS = SettJS
+        self.HTML = SettHTML
+
+        #Подключение кнопок к функциям
         self.ui.OpenFileButton.clicked.connect(self.OpenFile)
         self.ui.StartDetect.clicked.connect(self.Start_Detecting)
         self.ui.OpenHTML.clicked.connect(self.Openhtml)
 
+        #Установка значения только для чтения
         self.ui.lineEdit.setReadOnly(True)
 
+        #Установка глобальной видимости
         global Maket_Name
         global Complete
 
+    #Функция открытия файла
     def OpenFile(self):
         options = QtWidgets.QFileDialog.Options()
         #options |=QtWidgets.QFileDialog.DontUseNativeDialog
@@ -35,6 +44,7 @@ class Start_Window(QtWidgets.QMainWindow):
         else:
             self.ui.lineEdit.setText('')
 
+    #Функция считывания шаблона
     def Start_Detecting(self):
         i = 0
         if self.ui.lineEdit.text() == '':
@@ -58,12 +68,16 @@ class Start_Window(QtWidgets.QMainWindow):
             self.ui.label_2.adjustSize()
             self.ui.StartDetect.setEnabled(False)
             self.ui.OpenHTML.setEnabled(True)
-
+    #Функция открытия браузера и HTML файла с ним, если указан параметр то открывает и блокнот
     def Openhtml(self):
         new = 2
         url = os.path.dirname(os.path.realpath(__file__)) + '\HTMLBlocks\Construct.html'
         webbrowser.open(url, new=new)
-
+        if self.HTML:
+            import subprocess as sp
+            Name = 'notepad.exe'
+            fileName = os.path.dirname(os.path.realpath(__file__)) + '\HTMLBlocks\Construct.html'
+            sp.Popen([Name, fileName])
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

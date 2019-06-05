@@ -7,13 +7,18 @@ import UI_Window_Start
 
 
 class Instr_Window(QtWidgets.QMainWindow):
-    def __init__(self, CSS_NAME, JS_NAME,HTMLON):
+    def __init__(self, CSS_NAME, JS_NAME, HTMLON):
         super(Instr_Window, self).__init__()
         self.ui = InstructionWindow.Ui_MainWindow()
         self.ui.setupUi(self)
 
         self.setWindowTitle('Инструкция')
         self.setWindowIcon(QtGui.QIcon('Icon.ico'))
+
+        #Переменные настроек
+        self.SettCSS = CSS_NAME
+        self.SettJS = JS_NAME
+        self.SettHTML = HTMLON
 
         ###BANNER###
         Pic_ban = QtWidgets.QLabel(self)
@@ -79,16 +84,18 @@ class Instr_Window(QtWidgets.QMainWindow):
         Pic_low.move(50, 650)
 
         Label_For_Pic3 = QtWidgets.QLabel(self)
-        Label_For_Pic3.setText('Это баннер он используется для отображения информации или картинки')
+        Label_For_Pic3.setText('Это нижний блок сайта, используется для навигации')
         Label_For_Pic3.setStyleSheet('color:white; font:bold;')
         Label_For_Pic3.adjustSize()
         Label_For_Pic3.move(275, 675)
         ###
 
+        #Подключение к кнопке функции
         self.ui.StartLoad.clicked.connect(self.BeginLoad)
 
+    #Функция запуска окна работы
     def BeginLoad(self):
-        self.open = UI_Window_Start.Start_Window()
+        self.open = UI_Window_Start.Start_Window(self.SettCSS, self.SettJS, self.SettHTML)
         self.open.show()
 
 if __name__ == '__main__':

@@ -2,10 +2,15 @@ import os
 
 
 def StartConstruct(List_of_blocks):
+    #Координаты всех найденных блоков
     SXscr = SYscr = Exscr = EYscr = SXban = SYban = EXban = EYban = SXlow = SYlow = Exlow = EYlow = SXim = SYim = EXim = EYim = SX1ma = SY1ma = EX1ma = EY1ma = 0
+    #Переменные для записи в них HTML блоков
     File_Scroll = File_Low_Menu = File_Main_View = File_Image_block = File_Banner = ''
     Path = 'HTMLBlocks\Construct.html'
-    Flag = True
+    #Флаги для проверки больших элементов
+    FlagMain = True
+    FlagImg = True
+    #Запись для каждого блока своих координат и запись из файла HTML кода
     for blocks in List_of_blocks:
         head, name = os.path.split(blocks[4])
         if name == 'Scroll.png':
@@ -48,19 +53,31 @@ def StartConstruct(List_of_blocks):
             File_Main_View1 = open('HTMLBlocks\MainView.html', 'r')
             File_Main_View = File_Main_View1.read()
             File_Main_View1.close()
+    #Проверка на присутствие блоков невошедших в макет
     if(SX1ma > SXim and SY1ma > SYim and EX1ma < EXim and EY1ma < EYim):
         for blocks in List_of_blocks:
             head, name = os.path.split(blocks[4])
             if name == 'ImageBlock.png':
                 List_of_blocks.remove(blocks)
-    elif(SXim>SX1ma and SYim > SY1ma and EXim <EX1ma and EYim < EX1ma):
+            FlagImg = False
+
+    elif(SXim > SX1ma and SYim > SY1ma and EXim < EX1ma and EYim < EX1ma):
         for blocks in List_of_blocks:
             head, name = os.path.split(blocks[4])
             if name == '1CMainView.png':
                 List_of_blocks.remove(blocks)
-                Flag = False
+                FlagMain = False
+
+    elif(SY1ma > 300 and EY1ma > 700 and SYim > 300 and EYim > 700):
+        for blocks in List_of_blocks:
+            head, name = os.path.split(blocks[4])
+            if name == '1CMainView.png' or name == 'ImageBlock.png':
+                List_of_blocks.remove(blocks)
+                FlagImg = False
+                FlagMain = False
+    #Запись в HTML файл каждый блок HTML
     File_Main = open(Path, 'a+')
-    if Flag:
+    if (FlagMain == True and FlagImg !=True):
         File_Main.write(File_Main_View)
         File_Main.write('\n')
         File_Main.write(File_Low_Menu)
@@ -73,9 +90,20 @@ def StartConstruct(List_of_blocks):
         File_Main.write('\n')
         File_Main.write('</html>')
         File_Main.close()
-    else:
+    elif(FlagMain != True and FlagImg == True):
         File_Main.write(File_Image_block)
         File_Main.write('\n')
+        File_Main.write(File_Low_Menu)
+        File_Main.write('\n')
+        File_Main.write(File_Banner)
+        File_Main.write('\n')
+        File_Main.write(File_Scroll)
+        File_Main.write('\n')
+        File_Main.write('</body>')
+        File_Main.write('\n')
+        File_Main.write('</html>')
+        File_Main.close()
+    elif(FlagMain != True and FlagImg != True):
         File_Main.write(File_Low_Menu)
         File_Main.write('\n')
         File_Main.write(File_Banner)
