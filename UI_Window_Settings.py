@@ -20,6 +20,7 @@ class Setting_Window(QtWidgets.QMainWindow):
         self.ui.ExitToMain.clicked.connect(self.close)
         self.ui.ApplyButton.clicked.connect(self.ApplySettings)
         self.ui.CSS_Attach.clicked.connect(self.AttachCSS)
+        self.ui.JS_Attach.clicked.connect(self.AttachJS)
 
     def ApplySettings(self):
         if self.ui.HTMLOn.isChecked():
@@ -44,10 +45,10 @@ class Setting_Window(QtWidgets.QMainWindow):
         self.JS_NAME, _ = QtWidgets.QFileDialog.getOpenFileName(self, "Открыть файл", "", "JS файлы(*.js ))",
                                                             options=options)
         if self.JS_NAME:
-            self.ui.label_2.setStyleSheet('color:green')
+            self.ui.label_3.setStyleSheet('color:green')
         else:
             self.JS_NAME = None
-            self.ui.label_2.setStyleSheet('color:red')
+            self.ui.label_3.setStyleSheet('color:red')
 
 
 
