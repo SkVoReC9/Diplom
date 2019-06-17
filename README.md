@@ -1,3 +1,8 @@
+First: Setup Python 3.7
+Second: Setup PyQt5 (pip install pyqt5)
+Third: Setup OpenCv2,Numpy (pip install OpenCv2(Numpy))
+Fourth: Clone git repositorie
+
 Program for construct site's from picture or WebCam.
 1. Download or Capture the image
 2. Wait, while program detect the components
