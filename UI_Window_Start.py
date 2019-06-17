@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 import webbrowser
 
 from PyQt5 import QtWidgets, QtGui
@@ -78,6 +79,12 @@ class Start_Window(QtWidgets.QMainWindow):
             Name = 'notepad.exe'
             fileName = os.path.dirname(os.path.realpath(__file__)) + '\HTMLBlocks\Construct.html'
             sp.Popen([Name, fileName])
+        time.sleep(15)
+        fileName1 = open(os.path.dirname(os.path.realpath(__file__)) + '\HTMLBlocks\Construct.html', 'w')
+        fileName2 = open(os.path.dirname(os.path.realpath(__file__)) + '\HTMLBlocks\Construct1.html', 'r')
+        fileName1.write(fileName2)
+        fileName2.close()
+        fileName1.close()
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
