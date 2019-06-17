@@ -82,7 +82,8 @@ class Start_Window(QtWidgets.QMainWindow):
         time.sleep(15)
         fileName1 = open(os.path.dirname(os.path.realpath(__file__)) + '\HTMLBlocks\Construct.html', 'w')
         fileName2 = open(os.path.dirname(os.path.realpath(__file__)) + '\HTMLBlocks\Construct1.html', 'r')
-        fileName1.write(fileName2)
+        for str in fileName2:
+            fileName1.write(str)
         fileName2.close()
         fileName1.close()
 
