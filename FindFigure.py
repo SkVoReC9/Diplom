@@ -2,6 +2,7 @@ import FindFunc
 import HTMLModels
 import cv2
 import imutils
+import numpy
 
 def Start_Detect(FileName):
 #Считывание полученного изображения и преобразования его для обработки
